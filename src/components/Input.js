@@ -8,10 +8,11 @@ const Input=() => {
     })
     const [errors, setErrors]=useState({})
     const [isSubmit, setIsSubmit]=useState(false)
+
     useEffect(() => {
-        console.log(errors)
+       console.log(errors)
         if (Object.keys(errors).length === 0 && isSubmit) {
-            console.log(errors);
+            console.log(text);
         }
     },[errors])
 
@@ -42,11 +43,32 @@ const Input=() => {
 
     return(
         <div className="container">
-            {isSubmit ? <div className="resister">Success! Thank you for resistering!</div> : null}
+            {Object.keys(errors).length===0 && isSubmit ? <div className="resister">Success! Thank you for resistering!</div> : null}
             <form className="form" onSubmit={onFormSubmit}>
-                <input value={text.firstName} onChange={onInputChange} name="firstName" type="text" placeholder="First Name" />
-                <input value={text.lastName} onChange={onInputChange} name="lastName" type="text" placeholder="Last Name" />
-                <input value={text.email} onChange={onInputChange} name="email" type="text" placeholder="Email" />
+                <input 
+                    value={text.firstName} 
+                    onChange={onInputChange} 
+                    name="firstName" 
+                    type="text" 
+                    placeholder="First Name" 
+                />
+                <p>{errors.firstName}</p>
+                <input 
+                    value={text.lastName} 
+                    onChange={onInputChange} 
+                    name="lastName" 
+                    type="text" 
+                    placeholder="Last Name" 
+                />
+                <p>{errors.lastName}</p>
+                <input 
+                    value={text.email} 
+                    onChange={onInputChange} 
+                    name="email" 
+                    type="text" 
+                    placeholder="Email" 
+                />
+                <p>{errors.email}</p>
             <br />
                 <button className="btn">Register</button>
         </form>
